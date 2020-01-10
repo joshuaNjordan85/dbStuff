@@ -18,7 +18,7 @@ consul {
   # connections to the Consul server and reduce the number of open HTTP
   # connections. Additionally, it provides a "well-known" IP address for which
   # clients can connect.
-  address = "http://192.168.99.100:8500"
+  # address = "http://192.168.99.100:8500"
 
   # This is the ACL token to use when connecting to Consul. If you did not
   # enable ACLs on your Consul cluster, you do not need to set this option.
@@ -143,7 +143,7 @@ vault {
   #
   # This should also be less than or around 1/3 of your TTL for a predictable
   # behaviour. See https://github.com/hashicorp/vault/issues/3414
-  grace = "30s"
+  grace = "5s"
 
   # This is a Vault Enterprise namespace to use for reading/writing secrets.
   #
@@ -306,12 +306,12 @@ template {
   # This is the source file on disk to use as the input template. This is often
   # called the "Consul Template template". This option is required if not using
   # the `contents` option.
-  source = "/Users/jjordan/Hashicorp/Playgrounds/VaultPlayground/dbStuff/connectionPooling/config.tpl"
+  source = "/Users/jjordan/Hashicorp/Playgrounds/VaultPlayground/dbStuff/connectionPooling/db.properties.tpl"
 
   # This is the destination path on disk where the source template will render.
   # If the parent directories do not exist, Consul Template will attempt to
   # create them, unless create_dest_dirs is false.
-  destination = "/Users/jjordan/Hashicorp/Playgrounds/VaultPlayground/dbStuff/connectionPooling/config.ini"
+  destination = "/Users/jjordan/Hashicorp/Playgrounds/VaultPlayground/dbStuff/connectionPooling/db.properties"
 
   # This options tells Consul Template to create the parent directories of the
   # destination path if they do not exist. The default value is true.
@@ -327,7 +327,7 @@ template {
   # command will only run if the resulting template changes. The command must
   # return within 30s (configurable), and it must have a successful exit code.
   # Consul Template is not a replacement for a process monitor or init system.
-  command = "echo restart pgbouncer"
+  command = "cat $(pwd)/db.properties"
 
   # This is the maximum amount of time to wait for the optional command to
   # return. Default is 30s.
@@ -363,8 +363,8 @@ template {
   # This is a numeric time with a unit suffix ("5s"). There is no default value.
   # The wait value for a template takes precedence over any globally-configured
   # wait.
-  wait {
-    min = "2s"
-    max = "10s"
-  }
+  #wait {
+   # min = "5s"
+    #max = "10s"
+  #}
 }

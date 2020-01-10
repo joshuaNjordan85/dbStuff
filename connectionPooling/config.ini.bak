@@ -1,6 +1,0 @@
-[databases]
-postgres = host=$DOCKERHOST dbname=postgres 
-pool_mode = session
-listen_port = 6543
-listen_addr = $DOCKERHOST
-stats_users = stat_collector

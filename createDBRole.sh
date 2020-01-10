@@ -3,5 +3,5 @@
 $1 write database/roles/readonly \
 db_name=postgresql \
 creation_statements=@POSTGRES/readonly.sql \
-default_ttl="1m" \
-max_ttl="24h"
+default_ttl="30s" \
+max_ttl="30s"
